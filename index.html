@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Above & Beyond - Premium Cleaning Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#00b074',
+                            'green-dark': '#008a5b',
+                            'light-gray': '#f7f7f7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/4239130/pexels-photo-4239130.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* --- Animation Classes --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-slide-up {
+            transform: translateY(50px);
+        }
+        .animate-fade-in {
+             transform: translateY(20px);
+        }
+        .in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active-nav {
+            color: #00b074; /* brand green */
+            font-weight: 600;
+        }
+        
+        /* Before & After Slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .comparison-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .comparison-slider .img-comp-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+        }
+        .comparison-slider .img-comp-slider {
+            position: absolute;
+            z-index: 9;
+            cursor: ew-resize;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border: 3px solid #00b074;
+            opacity: 0.9;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00b074;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-700 font-sans">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <i class="fa-solid fa-sparkles text-brand-green"></i>
+                Above & Beyond
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-brand-green transition duration-300 active-nav" data-section="home">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-brand-green transition duration-300" data-section="services">Services</a>
+                <a href="#about" class="text-gray-600 hover:text-brand-green transition duration-300" data-section="about">About Us</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-brand-green transition duration-300" data-section="testimonials">Reviews</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-green transition duration-300" data-section="contact">Contact</a>
+            </div>
+            <div class="hidden lg:flex items-center">
+                <a href="#quote" class="bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Get a Free Quote</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden text-2xl text-gray-800">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-lg px-6 pb-4">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-brand-green" data-section="home">Home</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-brand-green" data-section="services">Services</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-brand-green" data-section="about">About Us</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-brand-green" data-section="testimonials">Reviews</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-brand-green" data-section="contact">Contact</a>
+            <div class="mt-4">
+                 <a href="#quote" class="block w-full bg-brand-green hover:bg-brand-green-dark text-white text-center font-semibold px-4 py-2 rounded-full transition duration-300 shadow-sm">Get a Free Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg text-white min-h-[85vh] flex flex-col justify-center items-center relative">
+            <div class="text-center animate-on-scroll animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">A Cleaner Home, A Happier You.</h1>
+                <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-200">Experience the gold standard in home and commercial cleaning. Meticulous, reliable, and always above & beyond.</p>
+                <a href="#quote" class="bg-white text-brand-green font-bold py-4 px-10 rounded-full text-lg hover:bg-gray-200 transition-all duration-300 shadow-2xl transform hover:scale-105">Book Your Cleaning Today</a>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="py-24 bg-brand-light-gray">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <!-- Feature Card -->
+                    <div class="animate-on-scroll animate-slide-up">
+                        <div class="bg-brand-green text-white text-4xl w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-shield-check"></i></div>
+                        <h3 class="text-xl font-bold my-4 text-gray-800">Trusted & Vetted</h3>
+                        <p class="text-gray-600">Our cleaners are fully insured, background-checked, and professionally trained.</p>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="bg-brand-green text-white text-4xl w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-leaf"></i></div>
+                        <h3 class="text-xl font-bold my-4 text-gray-800">Eco-Friendly Products</h3>
+                        <p class="text-gray-600">We use safe, non-toxic, and environmentally friendly cleaning supplies.</p>
+                    </div>
+                    <!-- Feature Card -->
+                    <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="bg-brand-green text-white text-4xl w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-calendar-star"></i></div>
+                        <h3 class="text-xl font-bold my-4 text-gray-800">Flexible Scheduling</h3>
+                        <p class="text-gray-600">Easy online booking for one-time, weekly, bi-weekly, or monthly services.</p>
+                    </div>
+                     <!-- Feature Card -->
+                    <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="bg-brand-green text-white text-4xl w-20 h-20 mx-auto rounded-full flex items-center justify-center shadow-lg"><i class="fa-solid fa-thumbs-up"></i></div>
+                        <h3 class="text-xl font-bold my-4 text-gray-800">Satisfaction Guaranteed</h3>
+                        <p class="text-gray-600">If you're not 100% satisfied, we'll come back and make it right. It's our promise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Before & After Section -->
+        <section id="before-after" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 animate-on-scroll animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">See the Transformation</h2>
+                    <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Slide to see the difference our professional cleaning makes.</p>
+                </div>
+                <div class="comparison-slider max-w-4xl mx-auto rounded-2xl shadow-2xl animate-on-scroll animate-slide-up" style="animation-delay: 0.2s;">
+                    <img src="https://placehold.co/1200x700/d1d5db/4b5563?text=Before" alt="Before cleaning">
+                    <div class="img-comp-overlay">
+                        <img src="https://placehold.co/1200x700/a7f3d0/166534?text=After" alt="After cleaning">
+                    </div>
+                    <div class="img-comp-slider">
+                        <i class="fa-solid fa-arrows-left-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-brand-light-gray">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 animate-on-scroll animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Cleaning Services</h2>
+                    <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Tailored cleaning solutions for every space. Choose the service that's right for you.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll animate-slide-up">
+                        <img src="https://placehold.co/600x400/a7f3d0/166534?text=Residential" alt="Residential Cleaning" class="w-full h-48 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-gray-800">Residential Cleaning</h3>
+                            <p class="text-gray-600 mb-4">From apartments to large homes, we provide standard, deep clean, and move-in/out services.</p>
+                            <a href="#" class="font-semibold text-brand-green hover:text-brand-green-dark">View Details <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Service Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll animate-slide-up" style="animation-delay: 0.1s">
+                         <img src="https://placehold.co/600x400/a7f3d0/166534?text=Commercial" alt="Commercial Cleaning" class="w-full h-48 object-cover">
+                        <div class="p-8">
+                           <h3 class="text-2xl font-bold mb-3 text-gray-800">Commercial Cleaning</h3>
+                            <p class="text-gray-600 mb-4">Keep your office, retail space, or business sparkling clean and professional for staff and clients.</p>
+                            <a href="#" class="font-semibold text-brand-green hover:text-brand-green-dark">Get a Quote <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                        </div>
+                    </div>
+                     <!-- Service Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 animate-on-scroll animate-slide-up" style="animation-delay: 0.2s">
+                         <img src="https://placehold.co/600x400/a7f3d0/166534?text=Specialty" alt="Specialty Cleaning" class="w-full h-48 object-cover">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-3 text-gray-800">Specialty Services</h3>
+                            <p class="text-gray-600 mb-4">Post-construction, window cleaning, carpet cleaning, and other specialized services on request.</p>
+                            <a href="#" class="font-semibold text-brand-green hover:text-brand-green-dark">Inquire Now <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get a Quote Section -->
+        <section id="quote" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-brand-green text-white rounded-2xl p-12 shadow-2xl animate-on-scroll animate-fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold">Get a Free, No-Obligation Quote</h2>
+                            <p class="mt-4 text-lg opacity-90">Ready for a spotless space? Fill out our simple form, and we'll get back to you with a personalized quote in no time.</p>
+                        </div>
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white">
+                            <input type="email" placeholder="Your Email" class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white">
+                             <select class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white/70">
+                                <option>Type of Service</option>
+                                <option>Residential Cleaning</option>
+                                <option>Commercial Cleaning</option>
+                                <option>Deep Cleaning</option>
+                            </select>
+                            <button type="submit" class="bg-white hover:bg-gray-200 text-brand-green font-bold p-3 rounded-lg transition-colors duration-300">Request My Quote</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="animate-on-scroll animate-slide-up">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-sparkles text-brand-green"></i>
+                        Above & Beyond
+                    </h3>
+                    <p class="text-gray-400">The gold standard in cleaning for Minneapolis and surrounding areas.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-yelp text-xl"></i></a>
+                    </div>
+                </div>
+                <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.1s">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="#services" class="text-gray-400 hover:text-white transition-colors">Our Services</a></li>
+                        <li class="mb-2"><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li class="mb-2"><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+                        <li class="mb-2"><a href="#quote" class="text-gray-400 hover:text-white transition-colors">Get a Quote</a></li>
+                    </ul>
+                </div>
+                <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.2s">
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <p class="text-gray-400 mb-2 flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1 text-brand-green"></i> Minneapolis, MN</p>
+                    <p class="text-gray-400 mb-2 flex items-center"><i class="fas fa-phone-alt mr-3 text-brand-green"></i> (612) 222-2222</p>
+                    <p class="text-gray-400 flex items-center"><i class="fas fa-envelope mr-3 text-brand-green"></i> contact@aboveandbeyond.com</p>
+                </div>
+                <div class="animate-on-scroll animate-slide-up" style="animation-delay: 0.3s">
+                    <h3 class="text-xl font-bold mb-4">Business Hours</h3>
+                    <p class="text-gray-400">Mon - Fri: 8:00 AM - 5:00 PM</p>
+                    <p class="text-gray-400">Sat: 9:00 AM - 2:00 PM</p>
+                    <p class="text-gray-400">Sun: Closed</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Above & Beyond Cleaning. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Active Nav Link Highlighting on Scroll ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[data-section]');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active-nav', link.dataset.section === sectionId);
+                    });
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => { observer.observe(section); });
+
+
+        // --- Before & After Slider ---
+        function initComparisons() {
+            const x = document.getElementsByClassName("comparison-slider");
+            for (let i = 0; i < x.length; i++) {
+                compareImages(x[i]);
+            }
+            function compareImages(img) {
+                let slider, clicked = 0, w, h;
+                w = img.offsetWidth;
+                h = img.offsetHeight;
+                const overlay = img.getElementsByClassName("img-comp-overlay")[0];
+                overlay.style.width = (w / 2) + "px";
+                slider = img.getElementsByClassName("img-comp-slider")[0];
+                slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+                
+                slider.addEventListener("mousedown", slideReady);
+                window.addEventListener("mouseup", slideFinish);
+                slider.addEventListener("touchstart", slideReady);
+                window.addEventListener("touchend", slideFinish);
+
+                function slideReady(e) {
+                    e.preventDefault();
+                    clicked = 1;
+                    window.addEventListener("mousemove", slideMove);
+                    window.addEventListener("touchmove", slideMove);
+                }
+                function slideFinish() {
+                    clicked = 0;
+                }
+                function slideMove(e) {
+                    let pos;
+                    if (clicked == 0) return false;
+                    pos = getCursorPos(e);
+                    if (pos < 0) pos = 0;
+                    if (pos > w) pos = w;
+                    slide(pos);
+                }
+                function getCursorPos(e) {
+                    let a, x = 0;
+                    e = (e.changedTouches) ? e.changedTouches[0] : e;
+                    a = img.getBoundingClientRect();
+                    x = e.pageX - a.left;
+                    x = x - window.pageXOffset;
+                    return x;
+                }
+                function slide(x) {
+                    overlay.style.width = x + "px";
+                    slider.style.left = overlay.offsetWidth - (slider.offsetWidth / 2) + "px";
+                }
+            }
+        }
+        initComparisons();
+
+
+        // --- Animate on Scroll ---
+        const animatedEls = document.querySelectorAll('.animate-on-scroll');
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        animatedEls.forEach(el => animationObserver.observe(el));
+    });
+    </script>
+</body>
+</html>
