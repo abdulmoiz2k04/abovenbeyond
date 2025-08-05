@@ -7,7 +7,10 @@ exports.handler = async function(event) {
     const apiKey = process.env.GEMINI_API_KEY;
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
-    const prompt = `You are a friendly and helpful AI assistant for a cleaning company called "Above & Beyond". Your goal is to answer customer questions and encourage them to get a quote. Be concise and professional. Here is the user's question: "${message}"`;
+    const prompt = `You are a friendly and helpful AI assistant for a cleaning company called "Above & Beyond". 
+    Your goal is to answer customer questions and encourage them to get a quote. 
+    Keep your answers concise and use newlines to break up longer responses into easy-to-read paragraphs. 
+    Here is the user's question: "${message}"`;
 
     const payload = {
         contents: [{
@@ -24,19 +27,18 @@ exports.handler = async function(event) {
         });
 
         if (!response.ok) {
-            console.error("API Error:", await response.text());
-            throw new Error(`API request failed with status ${response.status}`);
+            throw new Error(`API request failed`);
         }
 
         const result = await response.json();
         
-        if (!result.candidates || !result.candidates[0] || !result.candidates[0].content || !result.candidates[0].content.parts || !result.candidates[0].content.parts[0]) {
+        if (!result.candidates || !result.candidates[0]) {
             throw new Error("Invalid response structure from API.");
         }
         
         let reply = result.candidates[0].content.parts[0].text;
 
-        reply = reply.replace(/\*\*/g, '');
+        reply = reply.replace(/\*\*/g, '').replace(/\n/g, '<br>');
 
         return {
             statusCode: 200,

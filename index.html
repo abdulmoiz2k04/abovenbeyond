@@ -603,20 +603,21 @@
     function addMessage(message, sender, isTyping = false) {
         const messageWrapper = document.createElement('div');
         messageWrapper.classList.add('mb-4', 'flex', sender === 'user' ? 'justify-end' : 'justify-start');
-
+        
         const messageBubble = document.createElement('p');
-        messageBubble.textContent = message;
-
-        if (sender === 'user') {
-            messageBubble.classList.add('bg-brand-green', 'text-white', 'p-3', 'rounded-lg', 'inline-block');
-        } else {
+        
+        if (sender === 'bot') {
+            messageBubble.innerHTML = message;
             messageBubble.classList.add('bg-gray-200', 'text-gray-800', 'p-3', 'rounded-lg', 'inline-block');
+        } else {
+            messageBubble.textContent = message;
+            messageBubble.classList.add('bg-brand-green', 'text-white', 'p-3', 'rounded-lg', 'inline-block');
         }
 
         if (isTyping) {
             messageBubble.id = 'typing-indicator';
         }
-
+        
         messageWrapper.appendChild(messageBubble);
         chatMessages.appendChild(messageWrapper);
         chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
