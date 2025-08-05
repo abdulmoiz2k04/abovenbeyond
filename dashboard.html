@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Dashboard - Above & Beyond</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#00b074',
+                            'green-dark': '#008a5b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab {
+            border-color: #00b074;
+            color: #00b074;
+            background-color: #f0fdf4;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-md">
+            <div class="p-6 text-2xl font-bold text-gray-800 flex items-center gap-2 border-b">
+                <i class="fa-solid fa-sparkles text-brand-green"></i>
+                <span>A&B Dashboard</span>
+            </div>
+            <nav class="mt-6">
+                <button data-target="dashboard" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 tab-button active-tab">
+                    <i class="fa-solid fa-chart-line w-6"></i> Quote Requests
+                </button>
+                <button data-target="customers" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 tab-button">
+                    <i class="fa-solid fa-users w-6"></i> Customers
+                </button>
+                <button data-target="staff" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 tab-button">
+                    <i class="fa-solid fa-user-tie w-6"></i> Staff
+                </button>
+                <button data-target="services" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 tab-button">
+                    <i class="fa-solid fa-spray-can-sparkles w-6"></i> Services
+                </button>
+                <button data-target="inventory" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 tab-button">
+                    <i class="fa-solid fa-boxes-stacked w-6"></i> Inventory
+                </button>
+                <a href="index.html" class="w-full text-left py-3 px-6 text-gray-600 hover:bg-gray-50 hover:text-brand-green transition-colors flex items-center gap-3 mt-8 border-t">
+                    <i class="fa-solid fa-arrow-left w-6"></i> Back to Website
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-8">
+                
+                <!-- Dashboard / Quote Requests -->
+                <div id="dashboard" class="tab-content">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">New Quote Requests</h1>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="py-2">Customer</th>
+                                    <th class="py-2">Service</th>
+                                    <th class="py-2">Frequency</th>
+                                    <th class="py-2">Status</th>
+                                    <th class="py-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="quote-requests-table">
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                        <p id="no-requests-message" class="text-center text-gray-500 py-8">No new quote requests. Submit the form on the website to see it appear here!</p>
+                    </div>
+                </div>
+
+                <!-- Customer Management -->
+                <div id="customers" class="tab-content hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">Customer Management</h1>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <!-- Content for customer management -->
+                        <p>A list of all active customers would appear here.</p>
+                    </div>
+                </div>
+
+                <!-- Staff Management -->
+                <div id="staff" class="tab-content hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">Staff Management</h1>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p>A list of all staff members, their schedules, and assignments would appear here.</p>
+                    </div>
+                </div>
+
+                <!-- Service Management -->
+                <div id="services" class="tab-content hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">Service Management</h1>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p>A list of all cleaning services offered, with options to edit pricing and details, would appear here.</p>
+                    </div>
+                </div>
+
+                <!-- Inventory Management -->
+                <div id="inventory" class="tab-content hidden">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-6">Inventory Management</h1>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p>A list of all cleaning supplies, their stock levels, and reorder points would appear here.</p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.dataset.target;
+
+                // Toggle active tab button style
+                tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+                button.classList.add('active-tab');
+
+                // Show/hide content
+                tabContents.forEach(content => {
+                    if (content.id === target) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Load quote requests from localStorage
+        const quoteRequestsTable = document.getElementById('quote-requests-table');
+        const noRequestsMessage = document.getElementById('no-requests-message');
+        const requests = JSON.parse(localStorage.getItem('quoteRequests')) || [];
+
+        if (requests.length > 0) {
+            noRequestsMessage.classList.add('hidden');
+            requests.forEach(req => {
+                const row = document.createElement('tr');
+                row.classList.add('border-b', 'hover:bg-gray-50');
+                row.innerHTML = `
+                    <td class="py-3">
+                        <p class="font-medium">${req.name}</p>
+                        <p class="text-sm text-gray-500">${req.email}</p>
+                    </td>
+                    <td class="py-3">${req.serviceType}</td>
+                    <td class="py-3">${req.frequency}</td>
+                    <td class="py-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">New</span></td>
+                    <td class="py-3 text-right"><button class="text-brand-green hover:underline">View</button></td>
+                `;
+                quoteRequestsTable.appendChild(row);
+            });
+        } else {
+            noRequestsMessage.classList.remove('hidden');
+        }
+    });
+    </script>
+</body>
+</html>

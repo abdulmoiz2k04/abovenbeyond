@@ -182,9 +182,9 @@
                     <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Slide to see the difference our professional cleaning makes.</p>
                 </div>
                 <div class="comparison-slider max-w-4xl mx-auto rounded-2xl shadow-2xl animate-on-scroll animate-slide-up" style="animation-delay: 0.2s;">
-                    <img src="https://placehold.co/1200x700/d1d5db/4b5563?text=Before" alt="Before cleaning">
+                    <img src="before.png" alt="Before cleaning">
                     <div class="img-comp-overlay">
-                        <img src="https://placehold.co/1200x700/a7f3d0/166534?text=After" alt="After cleaning">
+                        <img src="after.png" alt="After cleaning">
                     </div>
                     <div class="img-comp-slider">
                         <i class="fa-solid fa-arrows-left-right"></i>
@@ -235,23 +235,84 @@
         <!-- Get a Quote Section -->
         <section id="quote" class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="bg-brand-green text-white rounded-2xl p-12 shadow-2xl animate-on-scroll animate-fade-in">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h2 class="text-3xl md:text-4xl font-bold">Get a Free, No-Obligation Quote</h2>
-                            <p class="mt-4 text-lg opacity-90">Ready for a spotless space? Fill out our simple form, and we'll get back to you with a personalized quote in no time.</p>
+                <div class="text-center mb-16 animate-on-scroll animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get a Personalized Quote</h2>
+                    <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Just a few details and we'll craft the perfect cleaning plan for you.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-brand-light-gray p-8 sm:p-12 rounded-2xl shadow-xl animate-on-scroll animate-slide-up">
+                    <form id="quote-form">
+                        <!-- Step 1: Contact Info -->
+                        <div id="form-step-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Step 1: Your Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" id="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                </div>
+                            </div>
                         </div>
-                        <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="Your Name" class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white">
-                            <input type="email" placeholder="Your Email" class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white">
-                             <select class="p-3 rounded-lg bg-white/20 placeholder-white/70 border-2 border-transparent focus:border-white focus:bg-white/30 transition-all text-white/70">
-                                <option>Type of Service</option>
-                                <option>Residential Cleaning</option>
-                                <option>Commercial Cleaning</option>
-                                <option>Deep Cleaning</option>
-                            </select>
-                            <button type="submit" class="bg-white hover:bg-gray-200 text-brand-green font-bold p-3 rounded-lg transition-colors duration-300">Request My Quote</button>
-                        </form>
+
+                        <!-- Step 2: Home Details -->
+                        <div id="form-step-2" class="hidden mt-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Step 2: Your Home</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label for="bedrooms" class="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+                                    <select id="bedrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                        <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="bathrooms" class="block text-sm font-medium text-gray-700 mb-1">Bathrooms</label>
+                                    <select id="bathrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                        <option>1</option><option>2</option><option>3</option><option>4+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sqft" class="block text-sm font-medium text-gray-700 mb-1">Approx. Sq. Ft.</label>
+                                    <input type="number" id="sqft" placeholder="e.g., 1500" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Service Details -->
+                        <div id="form-step-3" class="hidden mt-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Step 3: The Service</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="service-type" class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
+                                    <select id="service-type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                        <option>Standard Cleaning</option>
+                                        <option>Deep Cleaning</option>
+                                        <option>Move-In/Out Cleaning</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="frequency" class="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
+                                    <select id="frequency" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                        <option>One Time</option>
+                                        <option>Weekly</option>
+                                        <option>Bi-Weekly</option>
+                                        <option>Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation & Submission -->
+                        <div class="mt-8 flex justify-end gap-4">
+                            <button type="button" id="prev-btn" class="hidden bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-3 px-6 rounded-lg transition-colors">Back</button>
+                            <button type="button" id="next-btn" class="bg-brand-green hover:bg-brand-green-dark text-white font-bold p-3 px-6 rounded-lg transition-colors">Next</button>
+                            <button type="submit" id="submit-btn" class="hidden bg-brand-green hover:bg-brand-green-dark text-white font-bold p-3 px-6 rounded-lg transition-colors">Submit Request</button>
+                        </div>
+                    </form>
+                    <div id="form-success-message" class="hidden text-center mt-6">
+                        <p class="text-2xl font-bold text-brand-green">Thank You!</p>
+                        <p class="text-gray-700 mt-2">Your quote request has been sent. We'll be in touch shortly. You can now view your request in our <a href="dashboard.html" target="_blank" class="underline font-bold">management dashboard demo</a>.</p>
                     </div>
                 </div>
             </div>
@@ -302,6 +363,35 @@
             </div>
         </div>
     </footer>
+    <!-- AI Chatbot -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-50">
+        <!-- Chatbot Bubble -->
+        <button id="chatbot-bubble" class="bg-brand-green w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform">
+            <i class="fa-solid fa-comments text-white text-2xl"></i>
+        </button>
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 h-[28rem] bg-white rounded-2xl shadow-2xl flex flex-col transition-all">
+            <!-- Header -->
+            <div class="bg-brand-green p-4 rounded-t-2xl text-white">
+                <h3 class="font-bold text-lg">Above & Beyond AI Assistant</h3>
+                <p class="text-sm opacity-90">How can I help you today?</p>
+            </div>
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+                <!-- Initial Message -->
+                <div class="mb-4">
+                    <p class="bg-gray-200 text-gray-800 p-3 rounded-lg inline-block">Welcome! Ask me anything about our services, pricing, or availability.</p>
+                </div>
+            </div>
+            <!-- Input -->
+            <div class="p-4 border-t">
+                <form id="chat-form" class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="Type a message..." class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-green text-gray-800">
+                    <button type="submit" class="bg-brand-green text-white px-4 rounded-lg font-bold hover:bg-brand-green-dark transition-colors">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -394,7 +484,149 @@
             });
         }, { threshold: 0.15 });
         animatedEls.forEach(el => animationObserver.observe(el));
+
+        // --- Quote Form Logic ---
+        const quoteForm = document.getElementById('quote-form');
+        const formSteps = [
+            document.getElementById('form-step-1'),
+            document.getElementById('form-step-2'),
+            document.getElementById('form-step-3')
+        ];
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const formSuccessMessage = document.getElementById('form-success-message');
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            formSteps.forEach((step, index) => {
+                step.classList.toggle('hidden', index !== stepIndex);
+            });
+            prevBtn.classList.toggle('hidden', stepIndex === 0);
+            nextBtn.classList.toggle('hidden', stepIndex === formSteps.length - 1);
+            submitBtn.classList.toggle('hidden', stepIndex !== formSteps.length - 1);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < formSteps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Collect data
+            const quoteData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                bedrooms: document.getElementById('bedrooms').value,
+                bathrooms: document.getElementById('bathrooms').value,
+                sqft: document.getElementById('sqft').value,
+                serviceType: document.getElementById('service-type').value,
+                frequency: document.getElementById('frequency').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Simulate backend submission by saving to localStorage
+            const existingRequests = JSON.parse(localStorage.getItem('quoteRequests')) || [];
+            existingRequests.push(quoteData);
+            localStorage.setItem('quoteRequests', JSON.stringify(existingRequests));
+
+            // Show success message
+            quoteForm.classList.add('hidden');
+            formSuccessMessage.classList.remove('hidden');
+        });
+
+        // Initialize form
+        showStep(0);
     });
+
+        // --- Chatbot UI Logic ---
+    const chatbotBubble = document.getElementById('chatbot-bubble');
+    const chatWindow = document.getElementById('chat-window');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    chatbotBubble.addEventListener('click', () => {
+        chatWindow.classList.toggle('hidden');
+    });
+
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        // Display user message
+        addMessage(userMessage, 'user');
+        chatInput.value = '';
+
+        // Show typing indicator
+        addMessage('...', 'bot', true);
+
+        try {
+            // --- This is where we will call our AI backend ---
+            const response = await fetch('/.netlify/functions/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+
+            const data = await response.json();
+            const aiMessage = data.reply;
+
+            // Remove typing indicator and show AI message
+            removeTypingIndicator();
+            addMessage(aiMessage, 'bot');
+
+        } catch (error) {
+            console.error('Error fetching AI response:', error);
+            removeTypingIndicator();
+            addMessage("Sorry, I'm having trouble connecting. Please try again later.", 'bot');
+        }
+    });
+
+    function addMessage(message, sender, isTyping = false) {
+        const messageWrapper = document.createElement('div');
+        messageWrapper.classList.add('mb-4', 'flex', sender === 'user' ? 'justify-end' : 'justify-start');
+
+        const messageBubble = document.createElement('p');
+        messageBubble.textContent = message;
+
+        if (sender === 'user') {
+            messageBubble.classList.add('bg-brand-green', 'text-white', 'p-3', 'rounded-lg', 'inline-block');
+        } else {
+            messageBubble.classList.add('bg-gray-200', 'text-gray-800', 'p-3', 'rounded-lg', 'inline-block');
+        }
+
+        if (isTyping) {
+            messageBubble.id = 'typing-indicator';
+        }
+
+        messageWrapper.appendChild(messageBubble);
+        chatMessages.appendChild(messageWrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll
+    }
+
+    function removeTypingIndicator() {
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.parentElement.remove();
+        }
+    }
     </script>
 </body>
 </html>
